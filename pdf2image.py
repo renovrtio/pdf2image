@@ -10,7 +10,8 @@ def wirte_image(filename):
     for pg in range(pg_num):
         page = doc[pg]
         page_num = fmt.format(pg + 1)
-        img_name = f'{filename.name.split(".")[0]}_{page_num}.jpg'
+        # img_name = f'{filename.name.split(".")[0]}_{page_num}.jpg'
+        img_name = f'{os.path.splitext(filename.name)[0]}_{page_num}.jpg'
         yield page,img_name
 
 def get_image(dir_path):
