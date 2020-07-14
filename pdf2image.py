@@ -16,7 +16,8 @@ def wirte_image(filename):
 def get_image(dir_path):
     filenames = os.scandir(dir_path)
     for filename in filenames:
-        if filename.name.split('.')[-1] == 'pdf':
+        # if filename.name.split('.')[-1] == 'pdf':
+        if os.path.splitext(filename.name)[-1].lower() == '.pdf':
             # print(f'转转转换{filename.name},请稍等...')
             yield filename
 
@@ -25,7 +26,8 @@ if __name__ == '__main__':
     for filename in get_image(dir_path):
         print(f'正在转换{filename.name}，请稍等……')
         # 去除文件名中的空格
-        file_name = filename.name.split('.')[0].strip()
+        # file_name = filename.name.split('.')[0].strip()
+        file_name = os.path.splitext(filename.name)[0].strip()
         file_dir = os.path.join(dir_path, file_name)
         if not os.path.exists(file_dir):
             # shutil.rmtree(file_dir)
